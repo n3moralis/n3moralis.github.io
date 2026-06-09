@@ -1,16 +1,14 @@
 ---
 ---
-
 /* prettier-ignore */
 @use 'main
 {%- if jekyll.environment == 'production' -%}
   .bundle
 {%- endif -%}
 ';
-
 html[data-mode="dark"],
 html:not([data-mode]) {
-  /* Tła */
+  /* Backgrounds */
   --main-bg:                 #060810;
   --sidebar-bg:              #080b14;
   --topbar-bg:               #060810;
@@ -20,29 +18,25 @@ html:not([data-mode]) {
   --card-shadow:             none;
   --mask-bg:                 rgba(6, 8, 16, 0.65);
   --button-bg:               #0d1120;
-
-  /* Granice */
+  /* Borders */
   --main-border-color:       #1a2035;
   --sidebar-border-color:    #1a2035;
   --tb-border-color:         #1a2035;
   --search-border-color:     #1a2035;
   --categories-border:       #1a2035;
   --language-border-color:   #1a2035;
-
-  /* Typografia */
+  /* Typography */
   --text-color:              #e2e8f4;
   --text-muted-color:        #8892a4;
   --text-muted-highlight-color: #a8b2c4;
   --heading-color:           #ffffff;
   --post-list-text-color:    #e2e8f4;
   --topbar-text-color:       #8892a4;
-
-  /* Linki i akcenty */
+  /* Links and accents */
   --link-color:              #00e5a0;
   --link-underline-color:    rgba(0, 229, 160, 0.25);
   --site-title-color:        #00e5a0;
   --site-subtitle-color:     #8892a4;
-
   /* Sidebar */
   --sidebar-active-color:    #00e5a0;
   --sidebar-hover-bg:        #0d1120;
@@ -50,14 +44,12 @@ html:not([data-mode]) {
   --sidebar-btn-color:       #8892a4;
   --sidebar-btn-bg:          #0d1120;
   --avatar-border-color:     #1a2035;
-
-  /* Tagi */
+  /* Tags */
   --tag-hover:               #9b72cf;
   --tag-border:              rgba(155, 114, 207, 0.3);
   --tag-shadow:              none;
   --search-tag-bg:           #1a2035;
-
-  /* Bloki kodu */
+  /* Code blocks */
   --highlight-bg-color:      #0d1120;
   --highlighter-rouge-color: #00e5a0;
   --inline-code-bg:          #111729;
@@ -66,8 +58,7 @@ html:not([data-mode]) {
   --code-header-muted-color: #8892a4;
   --code-header-icon-color:  #8892a4;
   --highlight-lineno-color:  #8892a4;
-
-  /* Przyciski i UI */
+  /* Buttons and UI */
   --btn-border-color:        #00e5a0;
   --btn-backtotop-color:     #00e5a0;
   --btn-backtotop-border-color: #1a2035;
@@ -83,8 +74,7 @@ html:not([data-mode]) {
   --categories-icon-hover-color: #00e5a0;
   --clipboard-checked-color: #00e5a0;
   --filepath-text-color:     #9b72cf;
-
-  /* Tabele i misc */
+  /* Tables and misc */
   --tb-odd-bg:               #0a0e1a;
   --tb-even-bg:              #0d1120;
   --toc-highlight:           #00e5a0;
@@ -99,7 +89,6 @@ html:not([data-mode]) {
   --img-bg:                  transparent;
   --blockquote-border-color: #9b72cf;
   --blockquote-text-color:   #8892a4;
-
   /* Prompts */
   --prompt-text-color:       #e2e8f4;
   --prompt-tip-bg:           rgba(0, 229, 160, 0.08);
@@ -111,30 +100,61 @@ html:not([data-mode]) {
   --prompt-danger-bg:        rgba(255, 71, 87, 0.08);
   --prompt-danger-icon-color: #ff4757;
 }
-
-/* Fonty */
+/* Fonts */
 body {
   font-family: 'Inter', sans-serif !important;
 }
-
 code, pre, .highlight, kbd {
   font-family: 'JetBrains Mono', monospace !important;
 }
-
-/* Nagłówki na zielono */
+/* Green headings */
 h2, h3 {
   color: #00e5a0 !important;
 }
-
-/* Mermaid */
+/* Mermaid container */
 .mermaid {
   background: #0d1120;
   border: 1px solid #1a2035;
   border-radius: 6px;
   padding: 1rem;
 }
-
-/* Hover linków - nadpisanie hardcoded pomarańczowego */
+/* Mermaid edge labels - give the label the SAME background as the diagram
+   container (not transparent) so the connection line is hidden behind the
+   text instead of showing through it, while still blending into the diagram.
+   !important is required to override Chirpy's injected Mermaid styles. */
+.mermaid .edgeLabel,
+.mermaid .edgeLabel p,
+.mermaid .edgeLabel rect,
+.mermaid .edgeLabels div,
+.mermaid .label foreignObject {
+  background-color: #0d1120 !important;
+  background: #0d1120 !important;
+  opacity: 1 !important;
+}
+/* Edge label text - muted colour, readable on the container background */
+.mermaid .edgeLabel,
+.mermaid .edgeLabel span,
+.mermaid span.edgeLabel,
+.mermaid .edgeLabel p {
+  color: #8892a4 !important;
+}
+/* Mermaid connection lines - keep them subtle so they guide the eye
+   without competing with node content. Matches the border colour family. */
+.mermaid .flowchart-link,
+.mermaid .edgePaths path,
+.mermaid path.flowchart-link {
+  stroke: #2a3550 !important;
+  stroke-width: 1.5px !important;
+}
+/* Arrowheads - same subtle colour as the lines */
+.mermaid .edgePaths marker path,
+.mermaid marker path,
+.mermaid #arrowhead path,
+.mermaid .marker {
+  fill: #2a3550 !important;
+  stroke: #2a3550 !important;
+}
+/* Link hover - override hardcoded orange */
 #page-category a:hover,
 #page-tag a:hover,
 #access-lastmod a:hover,
